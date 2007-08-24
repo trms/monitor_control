@@ -60,50 +60,50 @@ namespace TRMS.CarouselMonitorControl
             this.toolStripSeparator1,
             this.Exit});
             this.BasicControlMenuStrip.Name = "BasicControlMenuStrip";
-            this.BasicControlMenuStrip.Size = new System.Drawing.Size(181, 126);
+            this.BasicControlMenuStrip.Size = new System.Drawing.Size(184, 126);
             // 
             // EditConfiguration
             // 
             this.EditConfiguration.Name = "EditConfiguration";
-            this.EditConfiguration.Size = new System.Drawing.Size(180, 22);
+            this.EditConfiguration.Size = new System.Drawing.Size(183, 22);
             this.EditConfiguration.Text = "Edit Configuration...";
             this.EditConfiguration.Click += new System.EventHandler(this.EditConfiguration_Click);
             // 
             // EditSchedule
             // 
             this.EditSchedule.Name = "EditSchedule";
-            this.EditSchedule.Size = new System.Drawing.Size(180, 22);
+            this.EditSchedule.Size = new System.Drawing.Size(183, 22);
             this.EditSchedule.Text = "Edit Schedule...";
             this.EditSchedule.Click += new System.EventHandler(this.EditSchedule_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(180, 6);
             // 
             // powerOnNow
             // 
             this.powerOnNow.Name = "powerOnNow";
-            this.powerOnNow.Size = new System.Drawing.Size(180, 22);
+            this.powerOnNow.Size = new System.Drawing.Size(183, 22);
             this.powerOnNow.Text = "Power On Now";
             this.powerOnNow.Click += new System.EventHandler(this.powerOnNow_Click);
             // 
             // PowerOff
             // 
             this.PowerOff.Name = "PowerOff";
-            this.PowerOff.Size = new System.Drawing.Size(180, 22);
+            this.PowerOff.Size = new System.Drawing.Size(183, 22);
             this.PowerOff.Text = "Power Off Now";
             this.PowerOff.Click += new System.EventHandler(this.PowerOff_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(180, 6);
             // 
             // Exit
             // 
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(180, 22);
+            this.Exit.Size = new System.Drawing.Size(183, 22);
             this.Exit.Text = "Exit...";
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
@@ -114,7 +114,7 @@ namespace TRMS.CarouselMonitorControl
             this.ClientSize = new System.Drawing.Size(284, 31);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CarouselMonitorControl";
-            this.Text = "Basic Monitor Control";
+            this.Text = "CarouselMonitorControl";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.CarouselMonitorControl_Load);
             this.BasicControlMenuStrip.ResumeLayout(false);

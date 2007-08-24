@@ -177,6 +177,8 @@ namespace TRMS.CarouselMonitorControl
 
                     while (true)
                     {
+                        Thread.Sleep(5000);
+
                         if (Event.EventTime < DateTime.Now)
                         {
                             if (Event.EventType == ScheduleHelper.PowerEventType.PowerOn)
@@ -189,8 +191,6 @@ namespace TRMS.CarouselMonitorControl
 
                         if (TRMS.CarouselMonitorControl.ScheduleHelper.ScheduleChanged)
                             break;
-
-                        Thread.Sleep(5000);
                     }
 
                 }
