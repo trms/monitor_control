@@ -609,7 +609,7 @@ Trademark=-1
             <Property name="IgnoreFailure" type="WordBool">False</Property>
             <Property name="IsAction" type="Boolean">True</Property>
             <Property name="IsBreakPoint" type="WordBool">False</Property>
-            <Property name="LastRun" type="TDateTime">39468.5216273958</Property>
+            <Property name="LastRun" type="TDateTime">39468.5263208565</Property>
             <Property name="LogMatches" type="Boolean">True</Property>
             <Property MultiValue="0" name="LogToVariable" type="string"></Property>
             <Property name="MatchMode" type="TDateMatchMode">dmLastRun</Property>
@@ -1357,7 +1357,7 @@ SHORTVERSION=%ShortVersion%
             <Property MultiValue="0" name="Encoding" type="string"></Property>
             <Property MultiValue="0" name="EncryptedPassword" type="string"></Property>
             <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
-            <Property MultiValue="0" name="Host" type="WideString">10.0.1.3</Property>
+            <Property MultiValue="0" name="Host" type="WideString">smtp-relay.trms.com</Property>
             <Property name="HTMLMessage" type="Boolean">True</Property>
             <Property name="IgnoreFailure" type="WordBool">False</Property>
             <Property name="IgnoreMissingAttachments" type="Boolean">False</Property>
@@ -1398,7 +1398,7 @@ SHORTVERSION=%ShortVersion%
               <Property MultiValue="0" name="Name" type="WideString"></Property>
               </Object>
             <Object Class="TFBAddressList" XMLID="{B325A4E7-A8B9-4550-8BF7-6C43011C0087}"><Property MultiValue="0" name="ListType" type="string">recipients</Property>
-              <Object Class="TFBEmailAddress" XMLID="{990137AA-1E06-40BA-9040-9437D31A1967}"><Property MultiValue="0" name="Address" type="WideString">developers@trms.com</Property>
+              <Object Class="TFBEmailAddress" XMLID="{049A5DEC-B3B8-45AB-9449-38EB1EA56502}"><Property MultiValue="0" name="Address" type="WideString">developers@trms.com</Property>
                 <Property MultiValue="0" name="AddressType" type="WideString"></Property>
                 <Property name="Enabled" type="Boolean">True</Property>
                 <Property MultiValue="0" name="Name" type="WideString">Tightrope Developers</Property>
