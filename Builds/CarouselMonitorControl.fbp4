@@ -609,7 +609,7 @@ Trademark=-1
             <Property name="IgnoreFailure" type="WordBool">False</Property>
             <Property name="IsAction" type="Boolean">True</Property>
             <Property name="IsBreakPoint" type="WordBool">False</Property>
-            <Property name="LastRun" type="TDateTime">38883.4374844792</Property>
+            <Property name="LastRun" type="TDateTime">39468.5216273958</Property>
             <Property name="LogMatches" type="Boolean">True</Property>
             <Property MultiValue="0" name="LogToVariable" type="string"></Property>
             <Property name="MatchMode" type="TDateMatchMode">dmLastRun</Property>
@@ -837,16 +837,16 @@ BuildVersion
                 <Property name="ApplyAssemblyInfoTo" type="TVSDotNetBuildType">btAllProjects</Property>
                 <Property name="ApplyResourceInfoTo" type="TVSDotNetBuildType">btAllProjects</Property>
                 <Property MultiValue="0" name="AssemblyComment" type="string"></Property>
-                <Property MultiValue="0" name="AssemblyCompany" type="string"></Property>
-                <Property MultiValue="0" name="AssemblyCopyright" type="string"></Property>
-                <Property MultiValue="0" name="AssemblyDescription" type="string"></Property>
-                <Property MultiValue="0" name="AssemblyFileVersion" type="string">0|0|0|0</Property>
-                <Property MultiValue="0" name="AssemblyProductName" type="string"></Property>
+                <Property MultiValue="0" name="AssemblyCompany" type="string">Tightrope Media Systems</Property>
+                <Property MultiValue="0" name="AssemblyCopyright" type="string">Copyright © Tightrope Media Systems 2008</Property>
+                <Property MultiValue="0" name="AssemblyDescription" type="string">CarouselMonitorControl</Property>
+                <Property MultiValue="0" name="AssemblyFileVersion" type="string">4|5|0|1</Property>
+                <Property MultiValue="0" name="AssemblyProductName" type="string">CarouselMonitorControl</Property>
                 <Property name="AssemblySelectedProjects" type="TStrings"><![CDATA[]]>
                   </Property>
-                <Property MultiValue="0" name="AssemblyTitle" type="string"></Property>
+                <Property MultiValue="0" name="AssemblyTitle" type="string">CarouselMonitorControl</Property>
                 <Property MultiValue="0" name="AssemblyTradeMark" type="string"></Property>
-                <Property MultiValue="0" name="AssemblyVersion" type="string">0|0|0|0</Property>
+                <Property MultiValue="0" name="AssemblyVersion" type="string">4|5|0|1</Property>
                 <Property name="AutoIncAssemblyBuildNumber" type="Boolean">False</Property>
                 <Property name="AutoIncAssemblyFileBuildNumber" type="Boolean">False</Property>
                 <Property name="AutoIncAssemblyFileRevisionNo" type="Boolean">False</Property>
@@ -973,7 +973,7 @@ BuildVersion
                   </Property>
                 <Property MultiValue="0" name="SharePath" type="string">wwwroot$</Property>
                 <Property MultiValue="0" name="Solution" type="string">%CVSDirectory%\Utilities\CarouselMonitorControl\MonitorControl\CarouselMonitorControl.sln</Property>
-                <Property MultiValue="0" name="SolutionConfiguration" type="string">Release|Mixed Platforms</Property>
+                <Property MultiValue="0" name="SolutionConfiguration" type="string">Release|Any CPU</Property>
                 <Property name="SuppressStatusMessages" type="Boolean">False</Property>
                 <Property name="UpdateAssemblyComment" type="Boolean">False</Property>
                 <Property name="UpdateAssemblyCompany" type="Boolean">True</Property>
@@ -988,7 +988,7 @@ BuildVersion
                 <Property name="UpdateWin32Resource" type="Boolean">False</Property>
                 <Property name="UseDotNetPropertySet" type="Boolean">True</Property>
                 <Property name="UseEnv" type="Boolean">False</Property>
-                <Property name="UseMSBuild" type="Boolean">False</Property>
+                <Property name="UseMSBuild" type="Boolean">True</Property>
                 <Property name="UseWin32PropertySet" type="Boolean">True</Property>
                 <Property MultiValue="0" name="VersionInfoKeys" type="string">FileVersion=0.0.0.0
 </Property>
@@ -1449,7 +1449,7 @@ SHORTVERSION=%ShortVersion%
         <Property MultiValue="0" name="Name" type="string">BuildArtifactsDirectory</Property>
         <Property name="VariableType" type="TFBVariableType">vtProject</Property>
         </Object>
-      <Object Class="TFBVariable" XMLID="{1768FE51-7324-4E08-91DC-08B1660BA716}"><Property MultiValue="0" name="DefaultValue" type="string">DVDImport</Property>
+      <Object Class="TFBVariable" XMLID="{1768FE51-7324-4E08-91DC-08B1660BA716}"><Property MultiValue="0" name="DefaultValue" type="string">CarouselMonitorControl</Property>
         <Property name="IsMacro" type="Boolean">False</Property>
         <Property name="IsPersistent" type="Boolean">False</Property>
         <Property name="MakeEnv" type="Boolean">False</Property>
