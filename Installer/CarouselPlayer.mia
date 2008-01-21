@@ -957,7 +957,7 @@ TRUE
 ISNT
 18
 {DD5D4408-C578-4D7D-834F-AF5902F5735F}
-F:\Local Source Code\Utilities\CarouselMonitorControl\Installer\BuildFiles\Carousel Monitor Control.exe.config
+#BUILDDIR#\Carousel Monitor Control.exe.config
 TRUE|
 $TARGETDIR$
 FALSE
@@ -970,7 +970,7 @@ FALSE
 TRUE
 TRUE
 {75CDD8F6-C7AE-4924-8B81-65B6D7F3C2CB}
-F:\Local Source Code\Utilities\CarouselMonitorControl\Installer\BuildFiles\Carousel Monitor Control.exe
+#BUILDDIR#\Carousel Monitor Control.exe
 TRUE|
 $TARGETDIR$
 FALSE
