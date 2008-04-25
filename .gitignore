@@ -1,0 +1,11 @@
+*.suo
+bin
+obj
+*.ncb
+*.user
+[Dd]ebug
+[Rr]elease
+*.lck
+*.fbl4
+*.fbl6
+*.fbpInf
