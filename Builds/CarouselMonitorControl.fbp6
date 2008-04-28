@@ -404,7 +404,7 @@ Trademark=-1
               <Property name="FailIfFileMissing" type="Boolean">True</Property>
               <Property name="HideActionFromLog" type="Boolean">False</Property>
               <Property name="IgnoreFailure" type="WordBool">False</Property>
-              <Property MultiValue="0" name="INIFilename" type="string">%FBPROJECTDIR%\%ProjectName%.ini</Property>
+              <Property MultiValue="0" name="INIFilename" type="string">%IniFile%</Property>
               <Property name="LogActionProperties" type="Boolean">False</Property>
               <Property MultiValue="0" name="LogToVariable" type="string"></Property>
               <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
@@ -412,10 +412,30 @@ Trademark=-1
               <Property MultiValue="0" name="PropertySetName" type="string">AssemblyInfo</Property>
               <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
               <Property MultiValue="0" name="Section" type="string">AssemblyInfo</Property>
-              <Property name="SetValuesTo" type="TStrings"><![CDATA[]]>
+              <Property name="SetValuesTo" type="TStrings"><![CDATA[
+
+
+
+
+
+
+
+
+
+]]>
                 </Property>
               <Property name="SuppressStatusMessages" type="Boolean">False</Property>
-              <Property name="ValuesToSet" type="TStrings"><![CDATA[]]>
+              <Property name="ValuesToSet" type="TStrings"><![CDATA[BuildVersion=0
+Company=0
+Copyright=0
+Description=0
+MajorVersion=0
+MinorVersion=0
+Product=0
+RevisionVersion=0
+Title=0
+Trademark=0
+]]>
                 </Property>
               </Object>
             <Object Class="TFBPropertySetIncAction" XMLID="{FA6505D4-C26F-4642-935F-947F2689DDB5}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
@@ -511,7 +531,7 @@ BuildVersion
               <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
               <Property name="HideActionFromLog" type="Boolean">False</Property>
               <Property name="IgnoreFailure" type="WordBool">False</Property>
-              <Property MultiValue="0" name="INIFilename" type="string">%FBPROJECTDIR%\%ProjectName%.ini</Property>
+              <Property MultiValue="0" name="INIFilename" type="string">%IniFile%</Property>
               <Property name="LogActionProperties" type="Boolean">False</Property>
               <Property MultiValue="0" name="LogToVariable" type="string"></Property>
               <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
