@@ -146,7 +146,7 @@
                 <Property name="Enabled" type="WordBool">True</Property>
                 <Property name="ExistsMode" type="TFileExistsMode">feFailIfMissing</Property>
                 <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
-                <Property MultiValue="0" name="FileOrDirectory" type="WideString">%FBPROJECTDIR%\%ProjectName%.ini</Property>
+                <Property MultiValue="0" name="FileOrDirectory" type="WideString">%IniFile%</Property>
                 <Property MultiValue="0" name="FileSet" type="string"></Property>
                 <Property name="HideActionFromLog" type="Boolean">False</Property>
                 <Property name="IgnoreFailure" type="WordBool">False</Property>
@@ -186,7 +186,7 @@
                 <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
                 <Property name="HideActionFromLog" type="Boolean">False</Property>
                 <Property name="IgnoreFailure" type="WordBool">False</Property>
-                <Property MultiValue="0" name="IniFile" type="WideString">%FBPROJECTDIR%\%ProjectName%.ini</Property>
+                <Property MultiValue="0" name="IniFile" type="WideString">%IniFile%</Property>
                 <Property name="LogActionProperties" type="Boolean">False</Property>
                 <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                 <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
@@ -285,7 +285,7 @@ Trademark=-1
                 <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
                 <Property name="HideActionFromLog" type="Boolean">False</Property>
                 <Property name="IgnoreFailure" type="WordBool">False</Property>
-                <Property MultiValue="0" name="INIFilename" type="string">%FBPROJECTDIR%\%ProjectName%.ini</Property>
+                <Property MultiValue="0" name="INIFilename" type="string">%IniFile%</Property>
                 <Property name="LogActionProperties" type="Boolean">False</Property>
                 <Property MultiValue="0" name="LogToVariable" type="string"></Property>
                 <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
@@ -327,7 +327,7 @@ Trademark=-1
             <Property name="HideActionFromLog" type="Boolean">False</Property>
             <Property name="IgnoreFailure" type="WordBool">False</Property>
             <Property name="IgnoreFileNotFound" type="Boolean">False</Property>
-            <Property MultiValue="0" name="INIFile" type="string">%FBPROJECTDIR%\%ProjectName%.ini</Property>
+            <Property MultiValue="0" name="INIFile" type="string">%IniFile%</Property>
             <Property name="LogActionProperties" type="Boolean">False</Property>
             <Property MultiValue="0" name="LogToVariable" type="string"></Property>
             <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
@@ -380,17 +380,15 @@ Trademark=-1
               <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
               <Property name="SuppressStatusMessages" type="Boolean">False</Property>
               <Object Class="TFBDotNetVersionInfoPropertySetObject" XMLID="{77609424-EF27-4905-9F4B-555A86BBFAA2}"><Property name="BuildVersion" type="Integer">0</Property>
-                <Property MultiValue="1" name="Company" type="string"><![CDATA[Tightrope Media Systems]]>
-                  </Property>
-                <Property MultiValue="1" name="Copyright" type="string"><![CDATA[Copyright © Tightrope Media Systems 2008]]>
-                  </Property>
-                <Property MultiValue="0" name="Description" type="string">CarouselMonitorControl</Property>
-                <Property name="MajorVersion" type="Integer">1</Property>
+                <Property MultiValue="0" name="Company" type="string"></Property>
+                <Property MultiValue="0" name="Copyright" type="string"></Property>
+                <Property MultiValue="0" name="Description" type="string"></Property>
+                <Property name="MajorVersion" type="Integer">0</Property>
                 <Property name="MinorVersion" type="Integer">0</Property>
                 <Property MultiValue="0" name="Name" type="string">AssemblyInfo</Property>
-                <Property MultiValue="0" name="Product" type="string">CarouselMonitorControl</Property>
-                <Property name="RevisionVersion" type="Integer">13</Property>
-                <Property MultiValue="0" name="Title" type="string">CarouselMonitorControl</Property>
+                <Property MultiValue="0" name="Product" type="string"></Property>
+                <Property name="RevisionVersion" type="Integer">0</Property>
+                <Property MultiValue="0" name="Title" type="string"></Property>
                 <Property MultiValue="0" name="Trademark" type="string"></Property>
                 </Object>
               </Object>
@@ -1218,6 +1216,24 @@ SHORTVERSION=%ShortVersion%
         <Property name="IsPersistent" type="Boolean">False</Property>
         <Property name="MakeEnv" type="Boolean">False</Property>
         <Property MultiValue="0" name="Name" type="string">Root</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+        </Object>
+      <Object Class="TFBVariable" XMLID="{B0F0E318-8AF8-4208-83F0-4F9B57EBE484}"><Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">%FBPROJECTDIR%\%ProjectName%-%BuildOnBranch%.ini</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">True</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">IniFile</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+        </Object>
+      <Object Class="TFBVariable" XMLID="{42C7F844-BEC3-47E0-A9E7-412996D9334A}"><Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string"></Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">BuildOnBranch</Property>
         <Property name="VariableType" type="TFBVariableType">vtProject</Property>
         </Object>
       </Object>
