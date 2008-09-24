@@ -150,7 +150,7 @@ namespace TRMS.CarouselMonitorControl
 
                 for (int i = 0; i < arraysize; i++)
                 {
-                    x[i] = byte.Parse(DataPart.Substring(i * 2, 1), System.Globalization.NumberStyles.HexNumber);
+                    x[i] = byte.Parse(DataPart.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
                 }
 
                 Serial.Write(x, 0, x.Length);
