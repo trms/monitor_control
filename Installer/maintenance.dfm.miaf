@@ -1,6 +1,0 @@
-IF (Modify.Checked = True)  THEN  ModifyText.Visible := True;
-IF (Repair.Checked = True)  THEN  RepairText.Visible := True;
-IF (Remove.Checked = True)  THEN  RemoveText.Visible := True;
-IF (Modify.Checked = False)  THEN  ModifyText.Visible := False;
-IF (Repair.Checked = False)  THEN  RepairText.Visible := False;
-IF (Remove.Checked = False)  THEN  RemoveText.Visible := False;

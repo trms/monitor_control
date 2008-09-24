@@ -32,7 +32,6 @@ welcome.dfm.miaf
 wizard.dfm
 wizard.dfm.miaf
 $
-icon.ico
 $
 
 
@@ -250,30 +249,67 @@ $
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $
 $
-1
+0
 4
 TRUE
 
-Tightrope Media Systems
-Carousel Monitor Control #FRIENDLYVERSION#
-{4D73E99A-CDE4-4D38-B13D-7E781DA98B87}
+My Company
+CarouselMonitorControl
+{47554C20-7607-456C-9E50-208D135D7876}
 {32129C62-DC76-42BC-935B-8F1040D8C985}
-#LONGVERSION#
+1.0
 English
-Carousel Monitor Control
-Carousel Monitor Control Installation
-Tightrope Media Systems
+CarouselMonitorControl
+CarouselMonitorControl Installation
+My Company
 All rights reserved
-{617FF90D-6AD9-4737-8008-F42C04DFFF0D}
-Tightrope Media Systems
-Tightrope Media Systems
-http://www.trms.com/
-http://www.trms.com/
+{7B00B6A6-36FB-4B9D-8BF4-7A32011AF0F1}
+My Company
+My Company
+http://www.mywebsite.com/
+http://www.mywebsite.com/
 All rights reserved
 FALSE
-Carousel Monitor Control #FRIENDLYVERSION#
+
 TRUE
 FALSE
 
@@ -295,8 +331,4 @@ FALSE
 FALSE
 FALSE
 
-checkmsi30.mia
-setupmsi30.mia
 $
-FALSE
-
