@@ -13,6 +13,27 @@ namespace RemoteMonitorControl
     public partial class Form1 : Form
     {
         NetServiceBrowser nsBrowser = new NetServiceBrowser();
+		
+		private class ServiceListEntry
+		{
+			private NetService service;
+			public bool Resolved = false;
+
+			public NetService Service
+			{
+				get { return service; }
+			}
+
+			public ServiceListEntry(NetService s)
+			{
+				service = s;
+			}
+
+			public override string ToString()
+			{
+				return service.Name;
+			}
+		}
 
         public Form1()
         {
@@ -21,21 +42,20 @@ namespace RemoteMonitorControl
             nsBrowser.InvokeableObject = this;
             nsBrowser.DidFindService += new NetServiceBrowser.ServiceFound(nsBrowser_DidFindService);
             nsBrowser.DidRemoveService += new NetServiceBrowser.ServiceRemoved(nsBrowser_DidRemoveService);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+			nsBrowser.SearchForService("_monitor_control._tcp", String.Empty);
+		}
 
         void nsBrowser_DidRemoveService(NetServiceBrowser browser, NetService service, bool moreComing)
         {
             servicesList.BeginUpdate();
 
-            foreach (ListViewItem item in servicesList.Items)
+			foreach (ServiceListEntry item in servicesList.Items)
             {
-                if (item.Tag == service)
-                    servicesList.Items.Remove(item);
+				if (item.Service == service)
+				{
+					servicesList.Items.Remove(item);
+					break;
+				}
             }
 
             servicesList.EndUpdate();
@@ -43,22 +63,24 @@ namespace RemoteMonitorControl
 
         void nsBrowser_DidFindService(NetServiceBrowser browser, NetService service, bool moreComing)
         {
-            ListViewItem item = new ListViewItem(service.Name);
-            item.Tag = service;
+			ServiceListEntry item = new ServiceListEntry(service);
 
-            servicesList.Items.Add(item);
+			servicesList.Items.Add(item);
+
             service.DidResolveService += new NetService.ServiceResolved(service_DidResolveService);
             service.ResolveWithTimeout(10);
         }
 
         void service_DidResolveService(NetService service)
         {
-            MessageBox.Show(service.Name);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            nsBrowser.SearchForService("_monitor_control._tcp", "");
-        }
+			foreach (ServiceListEntry item in servicesList.Items)
+			{
+				if (item.Service == service)
+				{
+					item.Resolved = true;
+					break;
+				}
+			}
+		}
     }
 }
