@@ -94,6 +94,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="NetworkControl.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -23,6 +23,9 @@ namespace TRMS.CarouselMonitorControl
 
             PowerManagement.hWnd = this.Handle.ToInt32();
 
+			if (Properties.Settings.Default.NetworkControl)
+				NetworkControl.StartServer();
+
             schedule = new Thread(new ThreadStart(ScheduleThread.RunSchedule));
             schedule.Start();
         }
@@ -35,6 +38,7 @@ namespace TRMS.CarouselMonitorControl
 
         private void Exit_Click(object sender, EventArgs e)
         {
+			NetworkControl.StopServer();
             schedule.Abort();
             Application.Exit();
         }

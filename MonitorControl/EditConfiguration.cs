@@ -157,6 +157,14 @@ namespace TRMS.CarouselMonitorControl
             }
         }
 
+		private void NetworkControl_CheckedChanged(object sender, EventArgs e)
+		{
+			if (NetworkControl.Checked)
+				TRMS.CarouselMonitorControl.NetworkControl.StartServer();
+			else
+				TRMS.CarouselMonitorControl.NetworkControl.StopServer();
+		}
+
 
 
     }
