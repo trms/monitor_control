@@ -69,6 +69,7 @@ namespace TRMS.CarouselMonitorControl
                 SerialPanel.Enabled = true;
             }
 
+            NetworkControl.Checked = settings.NetworkControl;
         }
 
         private void SaveSettings()
@@ -92,8 +93,9 @@ namespace TRMS.CarouselMonitorControl
             {
                 settings.UseWindowsPower = false;
                 settings.UseSerialPortPower = true;
-            } 
-            
+            }
+
+            settings.NetworkControl = NetworkControl.Checked;
             settings.Save();
         }
 

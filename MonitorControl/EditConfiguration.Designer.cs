@@ -32,7 +32,6 @@ namespace TRMS.CarouselMonitorControl
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditConfiguration));
             this.UseWindowsPower = new System.Windows.Forms.RadioButton();
             this.UseSerialPortPower = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.Baud = new System.Windows.Forms.ComboBox();
             this.Parity = new System.Windows.Forms.ComboBox();
@@ -53,14 +52,19 @@ namespace TRMS.CarouselMonitorControl
             this.label10 = new System.Windows.Forms.Label();
             this.SerialPanel = new System.Windows.Forms.Panel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.NetworkControl = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SerialPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // UseWindowsPower
             // 
             this.UseWindowsPower.AutoSize = true;
-            this.UseWindowsPower.Location = new System.Drawing.Point(24, 34);
+            this.UseWindowsPower.Location = new System.Drawing.Point(13, 19);
             this.UseWindowsPower.Name = "UseWindowsPower";
             this.UseWindowsPower.Size = new System.Drawing.Size(187, 17);
             this.UseWindowsPower.TabIndex = 0;
@@ -72,7 +76,7 @@ namespace TRMS.CarouselMonitorControl
             // UseSerialPortPower
             // 
             this.UseSerialPortPower.AutoSize = true;
-            this.UseSerialPortPower.Location = new System.Drawing.Point(24, 57);
+            this.UseSerialPortPower.Location = new System.Drawing.Point(13, 42);
             this.UseSerialPortPower.Name = "UseSerialPortPower";
             this.UseSerialPortPower.Size = new System.Drawing.Size(127, 17);
             this.UseSerialPortPower.TabIndex = 1;
@@ -80,15 +84,6 @@ namespace TRMS.CarouselMonitorControl
             this.UseSerialPortPower.Text = "Use serial port control";
             this.UseSerialPortPower.UseVisualStyleBackColor = true;
             this.UseSerialPortPower.CheckedChanged += new System.EventHandler(this.UseSerialPortPower_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(212, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "How would you like to control the monitors?";
             // 
             // label2
             // 
@@ -203,7 +198,7 @@ namespace TRMS.CarouselMonitorControl
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(263, 258);
+            this.Save.Location = new System.Drawing.Point(266, 309);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(75, 23);
             this.Save.TabIndex = 14;
@@ -214,7 +209,7 @@ namespace TRMS.CarouselMonitorControl
             // Cancel
             // 
             this.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Cancel.Location = new System.Drawing.Point(344, 258);
+            this.Cancel.Location = new System.Drawing.Point(347, 309);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
             this.Cancel.TabIndex = 15;
@@ -294,7 +289,7 @@ namespace TRMS.CarouselMonitorControl
             this.SerialPanel.Controls.Add(this.PowerOffString);
             this.SerialPanel.Controls.Add(this.label3);
             this.SerialPanel.Controls.Add(this.label4);
-            this.SerialPanel.Location = new System.Drawing.Point(46, 80);
+            this.SerialPanel.Location = new System.Drawing.Point(35, 65);
             this.SerialPanel.Name = "SerialPanel";
             this.SerialPanel.Size = new System.Drawing.Size(381, 171);
             this.SerialPanel.TabIndex = 22;
@@ -304,18 +299,48 @@ namespace TRMS.CarouselMonitorControl
             this.errorProvider1.BlinkRate = 100;
             this.errorProvider1.ContainerControl = this;
             // 
+            // NetworkControl
+            // 
+            this.NetworkControl.AutoSize = true;
+            this.NetworkControl.Location = new System.Drawing.Point(13, 19);
+            this.NetworkControl.Name = "NetworkControl";
+            this.NetworkControl.Size = new System.Drawing.Size(127, 17);
+            this.NetworkControl.TabIndex = 23;
+            this.NetworkControl.Text = "Allow network control";
+            this.NetworkControl.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.UseWindowsPower);
+            this.groupBox1.Controls.Add(this.UseSerialPortPower);
+            this.groupBox1.Controls.Add(this.SerialPanel);
+            this.groupBox1.Location = new System.Drawing.Point(5, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(422, 243);
+            this.groupBox1.TabIndex = 24;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "How would you like to control the monitors?";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.NetworkControl);
+            this.groupBox2.Location = new System.Drawing.Point(5, 261);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(422, 41);
+            this.groupBox2.TabIndex = 25;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Would you like to allow network control?";
+            // 
             // EditConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel;
-            this.ClientSize = new System.Drawing.Size(439, 291);
-            this.Controls.Add(this.SerialPanel);
+            this.ClientSize = new System.Drawing.Size(439, 342);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.Save);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.UseSerialPortPower);
-            this.Controls.Add(this.UseWindowsPower);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -325,8 +350,11 @@ namespace TRMS.CarouselMonitorControl
             this.SerialPanel.ResumeLayout(false);
             this.SerialPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -334,7 +362,6 @@ namespace TRMS.CarouselMonitorControl
 
         private System.Windows.Forms.RadioButton UseWindowsPower;
         private System.Windows.Forms.RadioButton UseSerialPortPower;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox Baud;
         private System.Windows.Forms.ComboBox Parity;
@@ -355,5 +382,8 @@ namespace TRMS.CarouselMonitorControl
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel SerialPanel;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox NetworkControl;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
