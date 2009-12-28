@@ -7,10 +7,32 @@ using System.Diagnostics;
 
 namespace TRMS.CarouselMonitorControl
 {
+    abstract public class PowerManagement
+    {
+        private static Properties.Settings Settings = new Properties.Settings();
+        public static int hWnd = 0;
+
+        public static void PowerOn()
+        {
+            if (Settings.UseWindowsPower)
+                WindowsPowerManagement.PowerOn(hWnd);
+            else
+                SerialPowerManagement.PowerOn();
+        }
+
+        public static void PowerOff()
+        {
+            if (Settings.UseWindowsPower)
+                WindowsPowerManagement.PowerOff(hWnd);
+            else
+                SerialPowerManagement.PowerOff();
+        }
+    }
+
     /// <summary>
     /// Summary description for Video.
     /// </summary>
-    public class WindowsPowerManagement
+    abstract public class WindowsPowerManagement
     {
         static int WM_SYSCOMMAND = 0x0112;
         static int SC_MONITORPOWER = 0xF170;
@@ -46,7 +68,7 @@ namespace TRMS.CarouselMonitorControl
 
     }
 
-    public class SerialPowerManagement
+    abstract public class SerialPowerManagement
     {
 
         public static void PowerOff()
@@ -182,9 +204,9 @@ namespace TRMS.CarouselMonitorControl
                         if (Event.EventTime < DateTime.Now)
                         {
                             if (Event.EventType == ScheduleHelper.PowerEventType.PowerOn)
-                                Schedule.PowerOn();
+                                PowerManagement.PowerOn();
                             else if (Event.EventType == ScheduleHelper.PowerEventType.PowerOff)
-                                Schedule.PowerOff();
+                                PowerManagement.PowerOff();
 
                             break;
                         }
@@ -321,22 +343,6 @@ namespace TRMS.CarouselMonitorControl
                 return EditSchedule.WeekDays.Saturday;
 
             return EditSchedule.WeekDays.Sunday;
-        }
-
-        public void PowerOn()
-        {
-            if (settings.UseWindowsPower)
-                WindowsPowerManagement.PowerOn(CarouselMonitorControl.WindowHandle);
-            else if (settings.UseSerialPortPower)
-                SerialPowerManagement.PowerOn();
-        }
-
-        public void PowerOff()
-        {
-            if (settings.UseWindowsPower)
-                WindowsPowerManagement.PowerOff(CarouselMonitorControl.WindowHandle);
-            else if (settings.UseSerialPortPower)
-                SerialPowerManagement.PowerOff();
         }
 
         public class PowerEventSort : IComparer

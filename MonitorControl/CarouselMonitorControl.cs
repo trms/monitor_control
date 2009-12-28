@@ -13,9 +13,6 @@ namespace TRMS.CarouselMonitorControl
     public partial class CarouselMonitorControl : Form
     {
         private Thread schedule;
-        private Properties.Settings Settings = new Properties.Settings();
-        public static int WindowHandle = 0;
-
 
         public CarouselMonitorControl()
         {
@@ -24,7 +21,7 @@ namespace TRMS.CarouselMonitorControl
             if(EventLog.SourceExists("Carousel Monitor Control") == false)
                 EventLog.CreateEventSource("Carousel Monitor Control", "TRMS");
 
-            WindowHandle = this.Handle.ToInt32();
+            PowerManagement.hWnd = this.Handle.ToInt32();
 
             schedule = new Thread(new ThreadStart(ScheduleThread.RunSchedule));
             schedule.Start();
@@ -56,18 +53,12 @@ namespace TRMS.CarouselMonitorControl
 
         private void powerOnNow_Click(object sender, EventArgs e)
         {
-            if (Settings.UseWindowsPower)
-                WindowsPowerManagement.PowerOn(this.Handle.ToInt32());
-            else
-                SerialPowerManagement.PowerOn();
+            PowerManagement.PowerOn();
         }
 
         private void PowerOff_Click(object sender, EventArgs e)
         {
-            if (Settings.UseWindowsPower)
-                WindowsPowerManagement.PowerOff(this.Handle.ToInt32());
-            else
-                SerialPowerManagement.PowerOff();
+            PowerManagement.PowerOff();
         }
 
 
