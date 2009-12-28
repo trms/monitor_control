@@ -24,6 +24,11 @@ namespace TRMS.CarouselMonitorControl
 
         private void Cancel_Click(object sender, EventArgs e)
         {
+			if (Properties.Settings.Default.NetworkControl)
+				TRMS.CarouselMonitorControl.NetworkControl.StartServer();
+			else
+				TRMS.CarouselMonitorControl.NetworkControl.StopServer();
+
             this.Close();
         }
 
