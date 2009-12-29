@@ -831,6 +831,53 @@ BuildVersion
               <Property name="TargetIsDir" type="WordBool">True</Property>
               </Object>
             </Object>
+          <Object Class="TGroupAction" XMLID="{044987B5-73DC-4EF4-8D14-16570FCEA937}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Copy Additional Files]]>
+              </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property MultiValue="1" name="Description" type="string"><![CDATA[Copy Additional Files]]>
+              </Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">False</Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Object Class="TCopyFilesAction" XMLID="{213080E5-574F-4448-B635-ED9D56A08A73}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Copy File(s) [ %Root%\Installers\Carousel\AdditionalFiles\*.* ]]]>
+                </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="ClearAttributes" type="WordBool">False</Property>
+              <Property MultiValue="1" name="Description" type="string"><![CDATA[Copy File(s) [ %Root%\Installers\Carousel\AdditionalFiles\*.* ]]]>
+                </Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property name="FailIfExists" type="WordBool">False</Property>
+              <Property name="FailIfZeroFiles" type="WordBool">False</Property>
+              <Property MultiValue="0" name="FileSpec" type="WideString">%Root%\Installers\Carousel\Redistributable\*.*</Property>
+              <Property name="Force" type="WordBool">True</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property name="LogFilesAffected" type="Boolean">True</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property name="Overwrite" type="Boolean">True</Property>
+              <Property name="OverwriteReadOnly" type="WordBool">False</Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="Recurse" type="WordBool">True</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              <Property MultiValue="0" name="Target" type="WideString">%BuildArtifactsDirectory%\%BuildVersion%\</Property>
+              <Property name="TargetIsDir" type="WordBool">True</Property>
+              </Object>
+            </Object>
           <Object Class="TGroupAction" XMLID="{C0158C29-73DF-4B30-8CB8-35BE5EB51A7E}"><Property MultiValue="0" name="ActionComment" type="string"></Property>
             <Property MultiValue="1" name="ActionDescription" type="string"><![CDATA[Make Installers]]>
               </Property>
