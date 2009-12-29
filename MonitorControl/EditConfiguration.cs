@@ -24,11 +24,6 @@ namespace TRMS.CarouselMonitorControl
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-			if (Properties.Settings.Default.NetworkControl)
-				TRMS.CarouselMonitorControl.NetworkControl.StartServer();
-			else
-				TRMS.CarouselMonitorControl.NetworkControl.StopServer();
-
             this.Close();
         }
 
@@ -41,6 +36,12 @@ namespace TRMS.CarouselMonitorControl
             else
             {
                 SaveSettings();
+
+                if (NetworkControl.Checked)
+                    TRMS.CarouselMonitorControl.NetworkControl.StartServer();
+                else
+                    TRMS.CarouselMonitorControl.NetworkControl.StopServer();
+
                 this.Close();
             }
         }
@@ -161,15 +162,6 @@ namespace TRMS.CarouselMonitorControl
                 Save.Enabled = false;
             }
         }
-
-		private void NetworkControl_CheckedChanged(object sender, EventArgs e)
-		{
-			if (NetworkControl.Checked)
-				TRMS.CarouselMonitorControl.NetworkControl.StartServer();
-			else
-				TRMS.CarouselMonitorControl.NetworkControl.StopServer();
-		}
-
 
 
     }

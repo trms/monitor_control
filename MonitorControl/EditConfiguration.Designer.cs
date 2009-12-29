@@ -308,7 +308,6 @@ namespace TRMS.CarouselMonitorControl
 			this.NetworkControl.TabIndex = 23;
 			this.NetworkControl.Text = "Allow network control";
 			this.NetworkControl.UseVisualStyleBackColor = true;
-			this.NetworkControl.CheckedChanged += new System.EventHandler(this.NetworkControl_CheckedChanged);
 			// 
 			// groupBox1
 			// 

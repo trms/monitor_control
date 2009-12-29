@@ -11,7 +11,7 @@ using ZeroconfService;
 
 namespace RemoteMonitorControl
 {
-    public partial class Form1 : Form
+    public partial class RemoteControl : Form
     {
         NetServiceBrowser nsBrowser = new NetServiceBrowser();
 		
@@ -38,7 +38,7 @@ namespace RemoteMonitorControl
 			}
 		}
 
-        public Form1()
+        public RemoteControl()
         {
             InitializeComponent();
 
