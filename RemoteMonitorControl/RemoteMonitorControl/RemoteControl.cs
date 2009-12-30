@@ -14,6 +14,9 @@ namespace RemoteMonitorControl
     public partial class RemoteControl : Form
     {
         NetServiceBrowser nsBrowser = new NetServiceBrowser();
+		private readonly int m_port = 26908;
+		private readonly int m_messageTime = 100;
+		private readonly int m_errorTime = 2500;
 		
 		private class ServiceListEntry
 		{
@@ -79,12 +82,18 @@ namespace RemoteMonitorControl
 
 		private void servicesList_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			OnButton.Enabled = OffButton.Enabled = (servicesList.SelectedIndices.Count > 0);
+			radioList.Checked = true;
+			UpdateOnOff();
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			OnButton.Enabled = OffButton.Enabled = (servicesList.SelectedIndices.Count > 0);
+			UpdateOnOff();
+		}
+
+		private void UpdateOnOff()
+		{
+			OnButton.Enabled = OffButton.Enabled = (radioHost.Checked || (servicesList.SelectedIndices.Count > 0));
 		}
 
 		private void OnButton_Click(object sender, EventArgs e)
@@ -99,38 +108,102 @@ namespace RemoteMonitorControl
 
 		private void SendToMonitors(string command)
 		{
-			foreach (ServiceListEntry item in servicesList.SelectedItems)
+			this.Enabled = false;
+			this.Cursor = Cursors.WaitCursor;
+			if (radioList.Checked)
 			{
-				// find any ipv4 addresses in the item
-				foreach (IPEndPoint address in item.Service.Addresses)
+				foreach (ServiceListEntry item in servicesList.SelectedItems)
 				{
-					if (address.AddressFamily == AddressFamily.InterNetwork)
+					// find any ipv4 addresses in the item
+					foreach (IPEndPoint address in item.Service.Addresses)
 					{
-						try
-						{
-							label1.Text = String.Format("Connecting to {0}:{1}", address.Address, address.Port);
-							Application.DoEvents();
-							System.Threading.Thread.Sleep(100);
-							Socket socket = new Socket(address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-							socket.Connect(address);
-							label1.Text = String.Format("Sending command to {0}:{1}", address.Address, address.Port);
-							Application.DoEvents();
-							System.Threading.Thread.Sleep(100);
-							socket.Send(System.Text.Encoding.ASCII.GetBytes(command));
-							socket.Close();
-							label1.Text = String.Format("Closed connection to {0}:{1}", address.Address, address.Port);
-							Application.DoEvents();
-							System.Threading.Thread.Sleep(100);
-						}
-						catch (Exception ex)
-						{
-							label1.Text = ex.Message;
-						}
-						Application.DoEvents();
+						if (address.AddressFamily == AddressFamily.InterNetwork)
+							SendToMonitor(command, address);
 					}
 				}
 			}
-			label1.Text = String.Empty;
+			else if (radioHost.Checked)
+			{
+				try
+				{
+					string host = textBox1.Text;
+					IPHostEntry hostEntry = null;
+					IPAddress address = null;
+					if (host.Substring(0, 1).IndexOfAny("0123456789".ToCharArray()) != -1)
+						address = IPAddress.Parse(host);
+					else
+					{
+						hostEntry = Dns.GetHostEntry(host);
+						if (hostEntry.AddressList.Length > 0)
+							address = hostEntry.AddressList[0];
+						else
+						{
+							toolStripStatusLabel1.Text = "Can't resolve host";
+							Application.DoEvents();
+							System.Threading.Thread.Sleep(m_errorTime);
+						}
+					}
+
+					// create socket and connect to host
+					if (address != null)
+					{
+						IPEndPoint ipe = new IPEndPoint(address, m_port);
+						SendToMonitor(command, ipe);
+					}
+				}
+				catch (Exception ex)
+				{
+					toolStripStatusLabel1.Text = ex.Message;
+					Application.DoEvents();
+					System.Threading.Thread.Sleep(m_errorTime);
+				}
+			}
+			toolStripStatusLabel1.Text = String.Empty;
+			this.Enabled = true;
+			this.Cursor = Cursors.Default;
+		}
+
+		private void SendToMonitor(string command, IPEndPoint address)
+		{
+			try
+			{
+				toolStripStatusLabel1.Text = String.Format("Connecting to {0}:{1}", address.Address, address.Port);
+				Application.DoEvents();
+				System.Threading.Thread.Sleep(m_messageTime);
+				Socket socket = new Socket(address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+				socket.Connect(address);
+				toolStripStatusLabel1.Text = String.Format("Sending command to {0}:{1}", address.Address, address.Port);
+				Application.DoEvents();
+				System.Threading.Thread.Sleep(m_messageTime);
+				socket.Send(System.Text.Encoding.ASCII.GetBytes(command));
+				socket.Close();
+				toolStripStatusLabel1.Text = String.Format("Closed connection to {0}:{1}", address.Address, address.Port);
+				Application.DoEvents();
+				System.Threading.Thread.Sleep(m_messageTime);
+			}
+			catch (Exception ex)
+			{
+				toolStripStatusLabel1.Text = ex.Message;
+				Application.DoEvents();
+				System.Threading.Thread.Sleep(m_errorTime);
+			}
+			Application.DoEvents();
+		}
+
+		private void textBox1_TextChanged(object sender, EventArgs e)
+		{
+			radioHost.Checked = true;
+			UpdateOnOff();
+		}
+
+		private void radioHost_CheckedChanged(object sender, EventArgs e)
+		{
+			UpdateOnOff();
+		}
+
+		private void radioList_CheckedChanged(object sender, EventArgs e)
+		{
+			UpdateOnOff();
 		}
     }
 }
