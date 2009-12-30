@@ -128,14 +128,14 @@ namespace RemoteMonitorControl
 				{
 					string host = textBox1.Text;
 					IPHostEntry hostEntry = null;
-					IPAddress address = null;
+					List<IPAddress> addresses = new List<IPAddress>();
 					if (host.Substring(0, 1).IndexOfAny("0123456789".ToCharArray()) != -1)
-						address = IPAddress.Parse(host);
+                        addresses.Add(IPAddress.Parse(host));
 					else
 					{
 						hostEntry = Dns.GetHostEntry(host);
 						if (hostEntry.AddressList.Length > 0)
-							address = hostEntry.AddressList[0];
+                            addresses.AddRange(hostEntry.AddressList);
 						else
 						{
 							toolStripStatusLabel1.Text = "Can't resolve host";
@@ -145,10 +145,11 @@ namespace RemoteMonitorControl
 					}
 
 					// create socket and connect to host
-					if (address != null)
+					foreach(IPAddress address in addresses)
 					{
 						IPEndPoint ipe = new IPEndPoint(address, m_port);
-						SendToMonitor(command, ipe);
+                        if (address.AddressFamily == AddressFamily.InterNetwork)
+                            SendToMonitor(command, ipe);
 					}
 				}
 				catch (Exception ex)
