@@ -61,18 +61,32 @@ namespace TRMS.CarouselMonitorControl
             Databits.SelectedItem = settings.Databits;
             PowerOnString.Text = settings.PowerOnString;
             PowerOffString.Text = settings.PowerOffString;
+            USBPowerOffString.Text = settings.USBUIRTOff;
+            USBPowerOnString.Text = settings.USBUIRTOn;
 
             if (settings.UseWindowsPower)
             {
                 UseWindowsPower.Checked = true;
                 UseSerialPortPower.Checked = false;
+                UseUSBUIRTPower.Checked = false;
                 SerialPanel.Enabled = false;
+                USBPanel.Enabled = false;
             }
-            else
+            else if(settings.UseSerialPortPower)
             {
                 UseWindowsPower.Checked = false;
                 UseSerialPortPower.Checked = true;
+                UseUSBUIRTPower.Checked = false;
+                USBPanel.Enabled = false;
                 SerialPanel.Enabled = true;
+            }
+            else if (settings.UseUSBUIRTPower)
+            {
+                UseWindowsPower.Checked = false;
+                UseSerialPortPower.Checked = false;
+                UseUSBUIRTPower.Checked = true;
+                SerialPanel.Enabled = false;
+                USBPanel.Enabled = true;
             }
 
             NetworkControl.Checked = settings.NetworkControl;
@@ -89,16 +103,26 @@ namespace TRMS.CarouselMonitorControl
             settings.Databits = Databits.Text;
             settings.PowerOnString = PowerOnString.Text;
             settings.PowerOffString = PowerOffString.Text;
+            settings.USBUIRTOff = USBPowerOffString.Text;
+            settings.USBUIRTOn = USBPowerOnString.Text;
 
             if (UseWindowsPower.Checked)
             {
                 settings.UseWindowsPower = true;
                 settings.UseSerialPortPower = false;
+                settings.UseUSBUIRTPower = false;
             }
-            else
+            else if (UseSerialPortPower.Checked)
             {
                 settings.UseWindowsPower = false;
                 settings.UseSerialPortPower = true;
+                settings.UseUSBUIRTPower = false;
+            }
+            else if (UseUSBUIRTPower.Checked)
+            {
+                settings.UseWindowsPower = false;
+                settings.UseSerialPortPower = false;
+                settings.UseUSBUIRTPower = true;
             }
 
             settings.NetworkControl = NetworkControl.Checked;
@@ -108,11 +132,19 @@ namespace TRMS.CarouselMonitorControl
         private void UseWindowsPower_CheckedChanged(object sender, EventArgs e)
         {
             SerialPanel.Enabled = false;
+            USBPanel.Enabled = false;
         }
 
         private void UseSerialPortPower_CheckedChanged(object sender, EventArgs e)
         {
             SerialPanel.Enabled = true;
+            USBPanel.Enabled = false;
+        }
+
+        private void UseUSBUIRTPower_CheckedChanged(object sender, EventArgs e)
+        {
+            SerialPanel.Enabled = false;
+            USBPanel.Enabled = true;
         }
 
         private void PowerOnString_TextChanged(object sender, EventArgs e)
@@ -163,6 +195,25 @@ namespace TRMS.CarouselMonitorControl
             }
         }
 
+        private void USBLearnOn_Click(object sender, EventArgs e)
+        {
+            USBPowerOnString.Text = USBUIRTPowerManagement.Learn(USBPowerOnString);
+        }
+
+        private void USBLearnOff_Click(object sender, EventArgs e)
+        {
+            USBPowerOffString.Text = USBUIRTPowerManagement.Learn(USBPowerOffString);
+        }
+
+        private void USBTestOn_Click(object sender, EventArgs e)
+        {
+            USBUIRTPowerManagement.Test(USBPowerOnString.Text);
+        }
+
+        private void USBTestOff_Click(object sender, EventArgs e)
+        {
+            USBUIRTPowerManagement.Test(USBPowerOffString.Text);
+        }
 
     }
 }

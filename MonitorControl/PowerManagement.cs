@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System.Collections;
 using System.Threading;
 using System.Diagnostics;
+using UsbUirt;
 
 namespace TRMS.CarouselMonitorControl
 {
@@ -16,16 +17,20 @@ namespace TRMS.CarouselMonitorControl
         {
             if (Settings.UseWindowsPower)
                 WindowsPowerManagement.PowerOn(hWnd);
-            else
+            else if (Settings.UseSerialPortPower)
                 SerialPowerManagement.PowerOn();
+            else if (Settings.UseUSBUIRTPower)
+                USBUIRTPowerManagement.PowerOn();
         }
 
         public static void PowerOff()
         {
             if (Settings.UseWindowsPower)
                 WindowsPowerManagement.PowerOff(hWnd);
-            else
+            else if(Settings.UseSerialPortPower)
                 SerialPowerManagement.PowerOff();
+            else if (Settings.UseUSBUIRTPower)
+                USBUIRTPowerManagement.PowerOff();
         }
     }
 
@@ -182,6 +187,129 @@ namespace TRMS.CarouselMonitorControl
 
             Serial.Close();
         }
+    }
+
+    /// <summary>
+    /// Summary description for Video.
+    /// </summary>
+    abstract public class USBUIRTPowerManagement
+    {
+        private static LearnCompletedEventArgs learnCompletedEventArgs = null;
+        public static bool CancelLearn = false;
+        public static string LearnState = "";
+
+        public static void PowerOff()
+        {
+            try
+            {
+                Properties.Settings settings = new Properties.Settings();
+                Controller mc = new Controller();
+                mc.Transmit(settings.USBUIRTOff, CodeFormat.Pronto, 10, TimeSpan.Zero);
+                EventLog.WriteEntry("Carousel Monitor Control", "The monitor has been powered off.", EventLogEntryType.Information);
+            }
+            catch (Exception e)
+            {
+                EventLog.WriteEntry("Carousel Monitor Control", "Error powering monitor off, " + e.Message, EventLogEntryType.Error);
+            }
+        }
+
+        public static void PowerOn()
+        {
+            try
+            {
+                Properties.Settings settings = new Properties.Settings();
+                Controller mc = new Controller();
+                mc.Transmit(settings.USBUIRTOn, CodeFormat.Pronto, 10, TimeSpan.Zero);
+                EventLog.WriteEntry("Carousel Monitor Control", "The monitor has been powered on.", EventLogEntryType.Information);
+            }
+            catch (Exception e)
+            {
+                EventLog.WriteEntry("Carousel Monitor Control", "Error powering monitor on, " + e.Message, EventLogEntryType.Error);
+            }
+        }
+
+        public static string Learn(System.Windows.Forms.TextBox status)
+        {
+            CancelLearn = false;
+
+            string irCode = "";
+            Controller mc = new Controller();
+            learnCompletedEventArgs = null;
+            mc.Learning += new UsbUirt.Controller.LearningEventHandler(mc_Learning);
+            mc.LearnCompleted += new UsbUirt.Controller.LearnCompletedEventHandler(mc_LearnCompleted);
+
+            try
+            {
+                try
+                {
+                    mc.LearnAsync(CodeFormat.Pronto, LearnCodeModifier.None, learnCompletedEventArgs);
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+
+                while (learnCompletedEventArgs == null)
+                {
+                    string s = Console.ReadLine();
+                    if (CancelLearn == true)
+                    {
+                        if (learnCompletedEventArgs == null)
+                        {
+                            mc.LearnAsyncCancel(learnCompletedEventArgs);
+                            Thread.Sleep(1000);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        status.Text = LearnState;
+                        status.Update();
+                        Thread.Sleep(100);
+                    }
+                }
+
+                if (learnCompletedEventArgs != null &&
+                    learnCompletedEventArgs.Cancelled == false &&
+                    learnCompletedEventArgs.Error == null)
+                {
+                    irCode = learnCompletedEventArgs.Code;
+                }
+
+            }
+            finally
+            {
+                mc.Learning -= new UsbUirt.Controller.LearningEventHandler(mc_Learning);
+                mc.LearnCompleted -= new UsbUirt.Controller.LearnCompletedEventHandler(mc_LearnCompleted);
+            }
+
+            return irCode;
+        }
+
+        private static void mc_Learning(object sender, LearningEventArgs e)
+        {
+             LearnState = "Learning: {" + e.Progress + "% freq=" + e.CarrierFrequency + " quality=" + e.SignalQuality;
+        }
+
+        private static void mc_LearnCompleted(object sender, LearnCompletedEventArgs e)
+        {
+            learnCompletedEventArgs = e;
+        }
+
+        public static void Test(string IRCode)
+        {
+            try
+            {
+                Controller mc = new Controller();
+                mc.Transmit(IRCode, CodeFormat.Pronto, 10, TimeSpan.Zero);
+                EventLog.WriteEntry("Carousel Monitor Control", "The monitor has been powered on.", EventLogEntryType.Information);
+            }
+            catch (Exception e)
+            {
+                EventLog.WriteEntry("Carousel Monitor Control", "Error powering monitor on, " + e.Message, EventLogEntryType.Error);
+            }
+        }
+
     }
 
     public class ScheduleThread
