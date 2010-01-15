@@ -13,7 +13,7 @@ namespace RemoteMonitorControl
 {
     public partial class RemoteControl : Form
     {
-        NetServiceBrowser nsBrowser = new NetServiceBrowser();
+        NetServiceBrowser nsBrowser = null;
 		private readonly int m_port = 26908;
 		private readonly int m_messageTime = 100;
 		private readonly int m_errorTime = 2500;
@@ -45,10 +45,18 @@ namespace RemoteMonitorControl
         {
             InitializeComponent();
 
-            nsBrowser.InvokeableObject = this;
-            nsBrowser.DidFindService += new NetServiceBrowser.ServiceFound(nsBrowser_DidFindService);
-            nsBrowser.DidRemoveService += new NetServiceBrowser.ServiceRemoved(nsBrowser_DidRemoveService);
-			nsBrowser.SearchForService("_monitor_control._tcp", String.Empty);
+            try
+            {
+                nsBrowser = new NetServiceBrowser();
+                nsBrowser.InvokeableObject = this;
+                nsBrowser.DidFindService += new NetServiceBrowser.ServiceFound(nsBrowser_DidFindService);
+                nsBrowser.DidRemoveService += new NetServiceBrowser.ServiceRemoved(nsBrowser_DidRemoveService);
+                nsBrowser.SearchForService("_monitor_control._tcp", String.Empty);
+            }
+            catch
+            {
+                MessageBox.Show("Bonjour is not installed");
+            }
 		}
 
         void nsBrowser_DidRemoveService(NetServiceBrowser browser, NetService service, bool moreComing)

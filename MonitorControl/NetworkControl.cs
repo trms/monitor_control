@@ -44,14 +44,28 @@ namespace TRMS.CarouselMonitorControl
 
 		private static void RegisterBonjour()
 		{
-			m_mdnsService = new NetService(m_serviceDomain, m_serviceName, Environment.MachineName, m_port);
-			m_mdnsService.Publish();
+            try
+            {
+                m_mdnsService = new NetService(m_serviceDomain, m_serviceName, Environment.MachineName, m_port);
+                m_mdnsService.Publish();
+            }
+            catch
+            {
+                //no nothing because bonjour is not installed
+            }
 		}
 
 		private static void UnregisterBonjour()
 		{
-			if(m_mdnsService != null)
-				m_mdnsService.Stop();
+            try
+            {
+                if (m_mdnsService != null)
+                    m_mdnsService.Stop();
+            }
+            catch
+            {
+                //no nothing because bonjour is not installed
+            }
 		}
 
 		private static void StartListening()
